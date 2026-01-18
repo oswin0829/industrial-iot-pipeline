@@ -12,34 +12,47 @@ A real-time data engineering pipeline that simulates an Industrial IoT (IIoT) en
 * **Monitoring:** Automated "Watchdog" script for 24/7 failure alerting.
 
 ## 📂 Repository Structure
-* `src/sensor_sim.py`: The "PLC" - generates and pushes data.
-* `src/monitor.py`: The "Watchdog" - alerts on threshold violations.
-* `sql/queries.sql`: Analytical queries for Dashboarding and Root Cause Analysis.
+* **`src/`** (Source Code):
+    * `sensor_sim.py`: The "PLC" simulator - generates and pushes data.
+    * `monitor.py`: The "Watchdog" service - alerts on threshold violations.
+* **`data/`** (Database Infrastructure):
+    * `schema.sql`: Contains the `CREATE TABLE` commands and initial seed data for machines/sensors.
+* **`analysis/`** (Business Intelligence):
+    * `queries.sql`: Analytical queries for Dashboarding, Anomaly Detection, and Root Cause Analysis.
 
 ## 🚀 How to Run
-1.  **Clone the repo:**
+
+### 1. Setup
+* **Clone the repo:**
     ```bash
     git clone [https://github.com/YOUR_USERNAME/industrial-iot-pipeline.git](https://github.com/oswin0829/industrial-iot-pipeline.git)
     ```
-2.  **Install dependencies:**
+* **Install dependencies:**
     ```bash
     pip install -r requirements.txt
     ```
-3.  **Configure Environment:**
-    Create a `.env` file in the root with your DB credentials:
+* **Configure Environment:**
+    Create a `.env` file in the root directory with your DB credentials:
     ```ini
     DB_HOST=your-aws-endpoint
     DB_NAME=postgres
     DB_USER=postgres
     DB_PASS=your-password
     ```
-4.  **Run the Simulation (Terminal 1):**
-    This acts as the machine generating data.
+
+### 2. Database Initialization
+Before running the code, you must create the tables.
+1.  Open `data/schema.sql` in your SQL Client (e.g., DBeaver).
+2.  Execute the script to create the `machines`, `sensors`, and `readings` tables.
+
+### 3. Execution
+* **Terminal 1: Start the Simulation**
+    (Acts as the machine generating data)
     ```bash
     python src/sensor_sim.py
     ```
-5.  **Run the Monitor (Terminal 2):**
-    This acts as the control room watchdog.
+* **Terminal 2: Start the Monitor**
+    (Acts as the control room watchdog)
     ```bash
     python src/monitor.py
     ```
