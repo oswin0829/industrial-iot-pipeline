@@ -19,7 +19,7 @@ A real-time data engineering pipeline that simulates an Industrial IoT (IIoT) en
 ## 🚀 How to Run
 1.  **Clone the repo:**
     ```bash
-    git clone [https://github.com/YOUR_USERNAME/industrial-iot-pipeline.git](https://github.com/YOUR_USERNAME/industrial-iot-pipeline.git)
+    git clone [https://github.com/YOUR_USERNAME/industrial-iot-pipeline.git](https://github.com/oswin0829/industrial-iot-pipeline.git)
     ```
 2.  **Install dependencies:**
     ```bash
@@ -33,7 +33,13 @@ A real-time data engineering pipeline that simulates an Industrial IoT (IIoT) en
     DB_USER=postgres
     DB_PASS=your-password
     ```
-4.  **Run the Simulation:**
+4.  **Run the Simulation (Terminal 1):**
+    This acts as the machine generating data.
     ```bash
     python src/sensor_sim.py
+    ```
+5.  **Run the Monitor (Terminal 2):**
+    This acts as the control room watchdog.
+    ```bash
+    python src/monitor.py
     ```
